@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entrada;
+use App\Valore;
 use Illuminate\Http\Request;
 
 class EntradasController extends Controller
@@ -24,7 +25,8 @@ class EntradasController extends Controller
      */
     public function create()
     {
-        return view('entrada');
+        $entrada = new Entrada();
+        return view('entrada', ['ent' => $entrada]);
     }
 
     /**
@@ -33,11 +35,22 @@ class EntradasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Entrada $entrada)
     {
-        $ent = new Entrada();
-        $ent->create($request->all());
-        return view('listagem');
+
+        $categoria = $request->input('categoria');
+        $placa = $request->input('placa');
+        $datetime = $request->input('datetime');
+
+        $val = new Valore();
+
+        $val = $val->find($categoria);
+
+        $val->entrada()->create(['placa' => $placa, 'entrada' => $datetime]);
+
+        $ent = $entrada->get();
+        return view('listagem', ['entradas' => $ent]);
+
     }
 
     /**
@@ -48,7 +61,8 @@ class EntradasController extends Controller
      */
     public function show(Entrada $entrada)
     {
-        return view('listagem');
+        $ent = $entrada->get();
+        return view('listagem', ['entradas' => $ent]);
     }
 
     /**
