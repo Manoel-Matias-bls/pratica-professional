@@ -71,9 +71,12 @@ class EntradasController extends Controller
      * @param  \App\Entrada  $entrada
      * @return \Illuminate\Http\Response
      */
-    public function edit(Entrada $entrada)
+    public function edit($id)
     {
-        //
+        $ent = Entrada::findOrFail($id);
+
+        return view('entrada', ['entradas' => $ent]);
+
     }
 
     /**
@@ -83,9 +86,26 @@ class EntradasController extends Controller
      * @param  \App\Entrada  $entrada
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Entrada $entrada)
+    public function update(Request $request)
     {
-        //
+//        $ent = Entrada::findOrFail($id);
+//
+//        $ent->update($request->all());
+//
+//        return view('listagem');
+
+        $categoria = $request->input('categoria');
+        $placa = $request->input('placa');
+        $datetime = $request->input('datetime');
+
+        $val = new Valore();
+
+        $val = $val->find($categoria);
+
+        $val->entrada()->update(['placa' => $placa, 'entrada' => $datetime]);
+
+        return view('entrada');
+
     }
 
     /**

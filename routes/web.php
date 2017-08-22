@@ -19,4 +19,8 @@ Route::get('/home', 'EntradasController@index');
 Route::get('/entrada', 'EntradasController@create');
 Route::get('/listagem', 'EntradasController@show');
 
-Route::any('/entrada/store', 'EntradasController@store');
+Route::post('/entrada/store', 'EntradasController@store');
+Route::get('entrada/{entrada}/editar', 'EntradasController@edit');
+Route::patch('/entrada/{entrada}', 'EntradasController@update');
+
+

@@ -35,5 +35,4 @@ class Entrada extends Model
         return $this->belongsTo('App\Valore');
     }
 
-
 }
