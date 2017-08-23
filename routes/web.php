@@ -20,7 +20,9 @@ Route::get('/entrada', 'EntradasController@create');
 Route::get('/listagem', 'EntradasController@show');
 
 Route::post('/entrada/store', 'EntradasController@store');
-Route::get('entrada/{entrada}/editar', 'EntradasController@edit');
-Route::patch('/entrada/{entrada}', 'EntradasController@update');
+Route::get('/entrada/{entrada}/editar', 'EntradasController@edit');
+Route::post('/entrada/{entrada}', 'EntradasController@update');
+Route::delete('/entrada/{entrada}', 'EntradasController@delete');
+
 
 
