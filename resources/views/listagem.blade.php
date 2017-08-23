@@ -45,9 +45,9 @@
                     <tbody>
                     @foreach($entradas as $entrada)
                         <tr>
-                            <td>{{$entrada->id}}</td>
-                            <td>{{$entrada->placa}}</td>
-                            <td>{{$entrada->entrada}}</td>
+                            <td>{!! $entrada->id !!}</td>
+                            <td>{!! $entrada->placa !!}</td>
+                            <td>{!! $entrada->entrada !!}</td>
 
                             @php
                                 switch ($entrada->valores_id) {
@@ -64,11 +64,11 @@
 
                             <td class="actions">
                                 <a class="btn btn-success btn-xs" href="#">Saída</a>
-                                <a class="btn btn-warning btn-xs" href="entrada/{{$entrada->id}}/editar">Editar</a>
+                                <a class="btn btn-warning btn-xs" href="entrada/{!! $entrada->id !!}/editar">Editar</a>
 
-                                {{Form::open(['method'=> 'DELETE', 'url'=> '/entrada/'.$entrada->id, 'style' => 'display: inline'])}}
-                                <button type="submit" class="btn btn-danger btn-xs" href="" data-toggle="modal" data-target="#delete-modal">Excluir</button>
-                                {{Form::close()}}
+                                {!! Form::open(['method'=> 'DELETE','url'=> 'entrada/'.$entrada->id, 'style' => 'display: inline']) !!}
+                                <button type="submit" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal">Excluir</button>
+                                {!! Form::close() !!}
                             </td>
                         </tr>
                     @endforeach

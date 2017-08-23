@@ -34,7 +34,7 @@ class EntradasController extends Controller
 
         $val = $val->find($categoria);
 
-        $val->entrada()->create(['placa' => $placa, 'entrada' => $datetime]);
+        $val->entrada()->updateOrCreate(['placa' => $placa, 'entrada' => $datetime]);
 
         $ent = $entrada->get();
 
@@ -61,23 +61,18 @@ class EntradasController extends Controller
 
     public function update($id, Request $request)
     {
-//        $ent = Entrada::findOrFail($id);
-//
-//        $ent->update($request->all());
-//
-//        return view('entrada');
+
+        $ent = Entrada::findOrFail($id);
 
         $categoria = $request->input('categoria');
-//        $placa = $request->input('placa');
-//        $datetime = $request->input('datetime');
+        $placa = $request->input('placa');
 
-        $val = new Valore();
+        $ent->valores_id = $categoria;
+        $ent->placa = $placa;
 
-        $val = $val->find($categoria);
+        $ent->save();
 
-        $val->entrada()->update($request->all());
-
-        return view('entrada');
+        return view('entrada'); //('listegem');
 
     }
 
