@@ -23,7 +23,7 @@ Route::post('entrada/store', 'EntradasController@store');
 
 Route::get('entrada/{entrada}/editar', 'EntradasController@edit');
 
-Route::patch('entrada/{entrada}', 'EntradasController@update');
+Route::patch('entrada/{ent}', 'EntradasController@update');
 
 Route::delete('entrada/{entrada}', 'EntradasController@delete');
 

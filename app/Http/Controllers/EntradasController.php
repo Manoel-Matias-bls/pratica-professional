@@ -54,6 +54,7 @@ class EntradasController extends Controller
     {
         $ent = Entrada::findOrFail($id);
         $val = Valore::get();
+
         return view('entrada', ['entradas' => $ent, 'valores' =>$val]);
 
     }
@@ -71,8 +72,9 @@ class EntradasController extends Controller
         $ent->placa = $placa;
 
         $ent->save();
+        $ent = Entrada::get();
 
-        return view('entrada'); //('listegem');
+        return view('listagem', ['entradas' => $ent]);
 
     }
 

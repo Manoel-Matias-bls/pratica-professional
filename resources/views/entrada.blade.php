@@ -10,9 +10,9 @@
 
                 @if(Request::is('*/editar'))
 
-                    <form action="{!! url('entrada/'.$entradas->id) !!}" data-toggle="modal" data-target="#update-modal" method="PATCH">
-
-                        {{--{!!Form::model(['url' => 'entradas/'.$entradas->id, 'method'=> 'PATCH'])!!}--}}
+                    {{--<form  method="post" action="{!! url('entrada/'.$entradas->id)!!}">--}}
+                        {{--{!! csrf_field() !!}--}}
+                        {!!Form::model($entradas, ['method' => 'PATCH', 'url' => 'entrada/'.$entradas->id])!!}
 
                         <div id="divHoraEntrada" class="form-group">
                             <label for="horarioEnt" class="control-label">Entrada</label>
@@ -48,14 +48,11 @@
                             </select>
 
                         </div>
-
                 @else
 
-                <form action="{!! url('entrada/store') !!}" method="post">
-
-                    {{--{!!Form::open(['url' => 'entrada/store'])!!}--}}
-
-                    {!! csrf_field() !!}
+                {{--<form action="{!! url('entrada/store') !!}" method="post">--}}
+                {{--{!! csrf_field() !!}--}}
+                   {!!Form::open(['url' => 'entrada/store'])!!}
 
                     <div class="form-group">
                         <label for="horarioEnt" class="control-label">Entrada</label>
@@ -82,8 +79,8 @@
 
                     <button type="submit" class="btn btn-primary">Salvar</button>
 
-                </form>
-                        <!--{{--{!! Form::close() !!}--}}-->
+                {{--</form>--}}
+                    {!! Form::close() !!}
             </div>
 
         </div>
