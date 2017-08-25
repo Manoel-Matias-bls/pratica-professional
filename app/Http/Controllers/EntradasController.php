@@ -78,6 +78,40 @@ class EntradasController extends Controller
 
     }
 
+    public function saida($id)
+    {
+        $ent = Entrada::findOrFail($id);
+        $val = Valore::get();
+
+        return view('saida', ['entradas' => $ent, 'valores' =>$val]);
+
+    }
+
+
+    public function fechamento($id, Request $request)
+    {
+
+        $ent = Entrada::findOrFail($id);
+
+        $categoria = $request->input('categoria');
+        $placa = $request->input('placa');
+        $datetimeSaida = $request->input('datetimeSaida');
+        $valorTotal = $request->input('valorTotal');
+
+
+        $ent->valores_id = $categoria;
+        $ent->placa = $placa;
+        $ent->saida = $datetimeSaida;
+        $ent->total = $valorTotal;
+
+        $ent->save();
+
+        $ent = Entrada::findOrFail($id);
+
+        return view('comprovante', ['entradas' => $ent]);
+
+    }
+
 
     public function delete($id)
     {
