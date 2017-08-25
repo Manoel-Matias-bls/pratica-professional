@@ -10,13 +10,11 @@
 
                 @if(Request::is('*/editar'))
 
-                    {{--<form  method="post" action="{!! url('entrada/'.$entradas->id)!!}">--}}
-                        {{--{!! csrf_field() !!}--}}
                         {!!Form::model($entradas, ['method' => 'PATCH', 'url' => 'entrada/'.$entradas->id])!!}
-
+                                {{--{!! csrf_field() !!}--}}
                         <div id="divHoraEntrada" class="form-group">
                             <label for="horarioEnt" class="control-label">Entrada</label>
-                            {!! Form::datetime('datetime', $entradas->entrada->format('Y-m-d H:i:s'), ['class'=>'form-control', 'autofocus']) !!}
+                            {!! Form::label('datetime', $entradas->entrada->format('Y-m-d H:i:s'), ['class'=>'form-control', 'autofocus']) !!}
                         </div>
 
                         <div class="form-group">
@@ -50,8 +48,6 @@
                         </div>
                 @else
 
-                {{--<form action="{!! url('entrada/store') !!}" method="post">--}}
-                {{--{!! csrf_field() !!}--}}
                    {!!Form::open(['url' => 'entrada/store'])!!}
 
                     <div class="form-group">
@@ -78,8 +74,6 @@
                     @endif
 
                     <button type="submit" class="btn btn-primary">Salvar</button>
-
-                {{--</form>--}}
                     {!! Form::close() !!}
             </div>
 
