@@ -63,7 +63,7 @@
                             @endphp
 
                             <td class="actions">
-                                <a class="btn btn-success btn-xs" href="saida/{!! $entrada->id !!}/fechamento">Saída</a>
+                                <a class="btn btn-success btn-xs" href="{{ route('saida',$entrada->id) }}">Saída</a>
                                 <a class="btn btn-warning btn-xs" href="entrada/{!! $entrada->id !!}/editar">Editar</a>
 
                                 {!! Form::open(['method'=> 'DELETE','url'=> 'entrada/'.$entrada->id, 'style' => 'display: inline']) !!}
